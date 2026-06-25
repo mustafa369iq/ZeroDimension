@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "ZeroDimension Framework V3"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+
+family-names: "Mohammed"
+given-names: "Mustafa"
+repository-code: "https://github.com/mustafa369iq/ZeroDimension"
+version: "3.0.0"
+date-released: 2026-06-25
+license: MIT

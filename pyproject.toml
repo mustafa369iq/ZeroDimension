@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zerodimension"
+version = "3.0.0"
+description = "ZeroDimension Framework V3 — a symbolic mathematical framework for division by zero using layered Theta-space rules."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "sympy>=1.10",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0", "hypothesis>=6.0"]
+
+[project.scripts]
+zerodimension = "zerodimension.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
