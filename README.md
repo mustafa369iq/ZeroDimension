@@ -1,4 +1,9 @@
 # ZeroDimension Framework V3
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20840182.svg)](https://doi.org/10.5281/zenodo.20840182)
+[![Tests](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml/badge.svg)](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-v3.0.2-purple)
 
 [![Tests](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml/badge.svg)](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
