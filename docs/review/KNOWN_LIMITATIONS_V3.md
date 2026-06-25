@@ -49,3 +49,25 @@ Known limitation of V3.
 Action
 
 Review in V4.
+
+---
+
+## Verified Property — Layer unification preserves same-layer arithmetic
+
+During scientific review, the following behavior was experimentally verified for same-layer values:
+
+```text
+U(a+b)=U(a)+U(b)
+U(a-b)=U(a)-U(b)
+U(ab)=U(a)U(b)
+U(a/b)=U(a)/U(b), b ≠ 0
+
+Where U denotes unify_layer(value, target_layer).
+
+Interpretation
+
+Layer unification in V3 preserves the basic algebraic structure of same-layer arithmetic.
+
+Status
+
+Verified experimentally in V3.
