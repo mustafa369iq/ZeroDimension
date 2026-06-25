@@ -2,10 +2,14 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata from this file."
 title: "ZeroDimension Framework V3"
 type: software
+
 authors:
   - family-names: "Mohammed"
     given-names: "Mustafa"
+
 version: "3.0.1"
+doi: 10.5281/zenodo.20840182
 date-released: "2026-06-25"
+
 repository-code: "https://github.com/mustafa369iq/ZeroDimension"
 license: "MIT"
