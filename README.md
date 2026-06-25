@@ -1,5 +1,9 @@
 # ZeroDimension Framework V3
 
+[![Tests](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml/badge.svg)](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Version](https://img.shields.io/badge/version-v3.0.0-purple)
+![License](https://img.shields.io/badge/license-MIT-green)
 **ZeroDimension** is an experimental symbolic computation framework that represents expressions produced by division-by-zero transitions using layered Theta states.
 
 It does **not** claim to replace classical mathematics. Instead, it defines a self-contained symbolic system for tracking division-by-zero events without collapsing them into `NaN`, `Infinity`, or runtime exceptions.
