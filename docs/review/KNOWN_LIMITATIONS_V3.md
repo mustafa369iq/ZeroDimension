@@ -71,3 +71,31 @@ Layer unification in V3 preserves the basic algebraic structure of same-layer ar
 Status
 
 Verified experimentally in V3.
+
+---
+
+## Known Numerical Artifact — Fractional powers of negative coefficients
+
+### Example
+
+```text
+sqrt(-4Θ₂)
+
+Current result:
+
+(1.2246467991473532e-16+2j)Θ₂
+Interpretation
+
+The expected mathematical result is approximately:
+
+2jΘ₂
+
+The small real component is a floating-point artifact from Python numeric evaluation, not a Theta-layer inconsistency.
+
+Status
+
+Known numerical artifact in V3.
+
+Action
+
+Review symbolic/complex simplification in future versions.
