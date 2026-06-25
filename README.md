@@ -1,41 +1,31 @@
 # ZeroDimension Framework V3
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20840182.svg)](https://doi.org/10.5281/zenodo.20840182)
 [![Tests](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml/badge.svg)](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Version](https://img.shields.io/badge/version-v3.0.2-purple)
 
-[![Tests](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml/badge.svg)](https://github.com/mustafa369iq/ZeroDimension/actions/workflows/tests.yml)
-![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Version](https://img.shields.io/badge/version-v3.0.0-purple)
-![License](https://img.shields.io/badge/license-MIT-green)
 **ZeroDimension** is an experimental symbolic computation framework that represents expressions produced by division-by-zero transitions using layered Theta states.
 
-It does **not** claim to replace classical mathematics. Instead, it defines a self-contained symbolic system for tracking division-by-zero events without collapsing them into `NaN`, `Infinity`, or runtime exceptions.
-
----
+It does **not** replace classical mathematics. It defines a self-contained symbolic system for tracking division-by-zero events without collapsing them into `NaN`, `Infinity`, or runtime exceptions.
 
 ## Why ZeroDimension?
 
-In ordinary software, division by zero usually causes one of three outcomes:
+In ordinary software, division by zero usually causes:
 
 - Exception
 - NaN
 - Infinity
 
-ZeroDimension takes a different approach:
+ZeroDimension represents the event symbolically:
 
+```text
+5 / 0  →  5Θ₁
 
-5 / 0 → 5Θ₁
+The value is preserved with internal layer metadata.
 
-
-The value is not discarded. It is represented symbolically as a Theta value with internal layer metadata.
-
----
-
-## Core Idea
-
-
+Core Idea
 Real Space
 
 5
@@ -51,58 +41,43 @@ Real Space
 ▼
 5Θ₃
 
-
-Each transition preserves the coefficient while increasing the internal layer by exactly one.
-
 Normal display hides the layer:
-
 
 5Θ
 
-
 Debug display reveals it:
 
-
 5Θ₃
-
-
----
-
-## Current Status
-
-- Version: V3
-- Status: Stable Experimental Prototype
-- Tests Passed: 97
-- CLI: Working
-- Equation Solver: Working
-
----
-
-## Quick Example
-
-```python
+Current Status
+Version: V3.0.2
+Status: Stable experimental prototype
+Tests: 97 passing
+CLI: Working
+Equation solver: Working
+DOI: 10.5281/zenodo.20840182
+Quick Example
 from zerodimension import theta, zdiv, transition
 
-print(zdiv(5,0))
-print(zdiv(0,0))
+print(zdiv(5, 0))      # 5Θ
+print(zdiv(0, 0))      # Θ
 
-x = zdiv(5,0)
-print(x.layer)
+x = zdiv(5, 0)
+print(x.layer)         # 1
 
 y = transition(x)
-print(y.layer)
-print(y.debug())
+print(y.layer)         # 2
+print(y.debug())       # 5Θ₂
 Installation
 pip install -e .
 
-Testing:
+For tests:
 
 pip install -e ".[test]"
 pytest
 Main Concepts
 ThetaValue
 
-Stores:
+A symbolic value storing:
 
 coefficient
 layer
@@ -110,29 +85,30 @@ state
 
 Examples:
 
-theta(0)
-theta(1)
-theta(-1)
-theta(5)
-theta(5, layer=2)
+theta(0)              # Θ
+theta(1)              # 1Θ
+theta(-1)             # -1Θ
+theta(5)              # 5Θ
+theta(5, layer=2)     # 5Θ
+theta(5, layer=2).debug()  # 5Θ₂
 Gateway
 
-Represents the zero-coefficient Theta value of a layer.
+A zero-coefficient Theta value of a specific layer. It represents the transition boundary of that layer.
 
-TransitionOperator (T)
+TransitionOperator
 
-Represents symbolic 0/0.
+0/0 is represented by T.
 
 It is:
 
-NOT a number
-NOT equal to 0
-NOT equal to 1
+not a number
+not equal to 0
+not equal to 1
+used as a transition/unification operator
+from zerodimension import T
 
-Examples:
-
-T(5)
-T(0)
+T(5)   # 5Θ
+T(0)   # Θ
 Rule Summary
 Operation	Result
 5 / 2	2.5
@@ -144,45 +120,54 @@ transition(5Θ₁)	5Θ₂
 5Θ₁ + 3Θ₂	Error
 theta(0)	Θ
 theta(1)	1Θ
-Axioms
+Axioms in Brief
 Ordinary arithmetic remains unchanged unless a division-by-zero transition occurs.
-Every Theta value stores coefficient, layer and state.
+Every Theta value stores coefficient, layer, and state.
 Arithmetic is allowed only inside the same layer.
 Cross-layer arithmetic is forbidden.
 Dividing by a gateway moves the value to the next layer.
-TransitionOperator (0/0) is not a number.
+0/0 is a TransitionOperator, not a number.
 Display hides layer metadata unless debug mode is enabled.
 No automatic downward transition exists.
 
 Full details:
 
-docs/AXIOMS_V3.md
-
+Axioms V3
+Specification V3
 Solving Equations
-solve("x/0","5")
-solve("(x+3)/0","2*y-5")
-solve("(x+3)/0","(2*y-5)/0")
-solve("x/0","y/0")
+from zerodimension import solve_zero_division_equation as solve
+
+solve("x/0", "5")
+solve("(x+3)/0", "2*y-5")
+solve("(x+3)/0", "(2*y-5)/0")
+solve("x/0", "y/0")
 Interactive Shell
 python -m zerodimension.cli shell
 
 Examples:
 
-theta(5)
-zdiv(5,0)
-transition(5)
-solve "x/0 = 5"
+Θ> theta(5)
+  5Θ
+
+Θ> zdiv(5,0)
+  5Θ
+
+Θ> debug(theta(5, layer=2))
+  5Θ₂
+
+Θ> solve "x/0 = 5"
+  x = 5
 Running Tests
 pytest
 
-Current coverage:
+Test coverage includes:
 
-Core arithmetic
-Display
-Layers
+core arithmetic
+display
+layers
 TransitionOperator
-Solver
-Property-based tests
+solver
+property-based tests
 Project Structure
 zerodimension/
 tests/
@@ -191,14 +176,4 @@ Limitations
 
 ZeroDimension is an experimental symbolic framework.
 
-It does not redefine classical arithmetic.
-
-It introduces symbolic behavior only after division-by-zero transitions.
-
-Documentation
-
-See:
-
-docs/AXIOMS_V3.md
-docs/SPECIFICATION_V3.md
-
+It does not redefine classical arithmetic. It introduces symbolic behavior only after division-by-zero transitions.
