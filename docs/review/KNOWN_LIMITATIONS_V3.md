@@ -99,3 +99,30 @@ Known numerical artifact in V3.
 Action
 
 Review symbolic/complex simplification in future versions.
+
+---
+
+## Display Limitation — Complex coefficient normalization
+
+### Example
+
+```text
+(1+0j)Θ₂
+(-0-2j)Θ₂
+Concern
+
+Complex coefficients are handled correctly mathematically, but display formatting may show redundant components such as:
+
+1+0j
+-0-2j
+Interpretation
+
+This is a display normalization issue, not a Theta algebra issue.
+
+Status
+
+Known display limitation in V3.
+
+Action
+
+Review coefficient formatting and complex normalization in V4.
